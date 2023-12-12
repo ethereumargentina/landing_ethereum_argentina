@@ -28,48 +28,50 @@ const AgendaItem = ({
     subTitle,
 }: Props) => {
     return (
-        <Grid container xs={12} alignItems={'center'}>
-            <Grid container xs={12} sm={3} direction={'row'}>
-                <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-                    <CardMedia
-                        component="img"
-                        height="100"
-                        image={iconSrc}
-                        alt={'Agenda'}
-                    />
-                </Box>
-                <Box
-                    alignItems={'center'}
-                    justifyContent={'center'}
-                    sx={{
-                        display: 'flex',
-                        backgroundColor: bgColorDate,
-                        width: { xs: '100%', sm: 100 },
-                    }}
-                    width={100}
-                    height={100}
-                >
-                    <Box>
-                        <Typography
-                            variant="h2"
-                            align="center"
-                            fontSize={'2em'}
-                            fontFamily={'becker-wood-type'}
-                            color={'primary.main'}
-                        >
-                            {date}
-                        </Typography>
-                        <Typography
-                            variant="h2"
-                            align="center"
-                            fontSize={'2em'}
-                            fontFamily={'becker-wood-type'}
-                            color={'primary.main'}
-                        >
-                            {month}
-                        </Typography>
+        <Grid container alignItems={'center'}>
+            <Grid item xs={12} sm={3}>
+                <Grid container direction={'row'}>
+                    <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                        <CardMedia
+                            component="img"
+                            height="100"
+                            image={iconSrc}
+                            alt={'Agenda'}
+                        />
                     </Box>
-                </Box>
+                    <Box
+                        alignItems={'center'}
+                        justifyContent={'center'}
+                        sx={{
+                            display: 'flex',
+                            backgroundColor: bgColorDate,
+                            width: { xs: '100%', sm: 100 },
+                        }}
+                        width={100}
+                        height={100}
+                    >
+                        <Box>
+                            <Typography
+                                variant="h2"
+                                align="center"
+                                fontSize={'2em'}
+                                fontFamily={'becker-wood-type'}
+                                color={'primary.main'}
+                            >
+                                {date}
+                            </Typography>
+                            <Typography
+                                variant="h2"
+                                align="center"
+                                fontSize={'2em'}
+                                fontFamily={'becker-wood-type'}
+                                color={'primary.main'}
+                            >
+                                {month}
+                            </Typography>
+                        </Box>
+                    </Box>
+                </Grid>
             </Grid>
             <Grid item xs={12} sm={9}>
                 <Box
