@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {
     AppBar,
@@ -11,14 +11,13 @@ import {
     ListItemText,
     SwipeableDrawer,
     Toolbar,
-    useMediaQuery
-} from "@mui/material";
+    useMediaQuery,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import { useTranslation } from "react-i18next";
-
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
 
 interface Props {
     /**
@@ -35,19 +34,19 @@ const navBarStyles = {
     border: 0,
     display: 'flex',
     flexDirection: 'row',
-    width: '100%'
-}
+    width: '100%',
+};
 
 const fontBecker = {
     fontFamily: 'becker-wood-type',
     fontSize: '1.3rem',
-    color: 'primary.main'
-}
+    color: 'primary.main',
+};
 
 const barItem = {
     flexDirection: 'row',
-    alignItems: 'baseline'
-}
+    alignItems: 'baseline',
+};
 
 const buttonTickets = {
     backgroundColor: 'common.black',
@@ -60,32 +59,30 @@ const buttonTickets = {
     display: {
         xs: 'none',
         sm: 'block',
-
     },
     textOverflow: 'ellipsis',
-    minWidth: '150px'
-}
+    minWidth: '150px',
+};
 
 const ItemLocale = ({ text, href = '', selected = false }: any) => {
-    const router = useRouter()
-    const { locales, locale: activeLocale } = router
+    const router = useRouter();
+    const { locales, locale: activeLocale } = router;
     const activeLocales = href.charAt(0) === '#' ? false : href;
     return (
-        <Box sx={{
-            mx: 1,
-            ...(activeLocale === href && {
-                textDecoration: 'underline'
-            })
-        }}>
-            <Link
-                href={href}
-                locale={activeLocales}
-                scroll={!activeLocales}
-            >{text}
+        <Box
+            sx={{
+                mx: 1,
+                ...(activeLocale === href && {
+                    textDecoration: 'underline',
+                }),
+            }}
+        >
+            <Link href={href} locale={activeLocales} scroll={!activeLocales}>
+                {text}
             </Link>
         </Box>
     );
-}
+};
 const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -94,23 +91,25 @@ const scrollToSection = (id: string) => {
 };
 const ItemNav = ({ text, to = '' }: any) => {
     return (
-        <Box sx={{
-            mx: 1,
-            '&:hover': {
-                textDecoration: 'underline'
-            }
-        }} onClick={() => scrollToSection(to)}>
+        <Box
+            sx={{
+                mx: 1,
+                '&:hover': {
+                    textDecoration: 'underline',
+                },
+            }}
+            onClick={() => scrollToSection(to)}
+        >
             {text}
         </Box>
     );
-}
+};
 
 export default function DrawerAppBar(props: Props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
     const { t } = useTranslation('home');
     const hideElement = useMediaQuery('(max-width:700px)');
-
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
@@ -119,20 +118,20 @@ export default function DrawerAppBar(props: Props) {
     const navItems = [
         {
             text: t('apply'),
-            to: 'apply'
+            to: 'apply',
         },
         {
             text: t('buildathon'),
-            to: 'buildathon'
+            to: 'buildathon',
         },
         {
             text: t('agenda'),
-            to: 'agenda'
+            to: 'agenda',
         },
         {
             text: t('faqs'),
-            to: 'faqs'
-        }
+            to: 'faqs',
+        },
     ];
 
     const scrollToSection = (id: string) => {
@@ -143,15 +142,23 @@ export default function DrawerAppBar(props: Props) {
         handleDrawerToggle();
     };
 
-
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={fontBecker}>
             <List sx={fontBecker}>
                 <ListItem />
                 {navItems.map((item) => (
                     <ListItem key={item.text} disablePadding sx={fontBecker}>
-                        <ListItemButton sx={{ textAlign: 'left', ...fontBecker }} onClick={() => scrollToSection(item.to)}>
-                            <ListItemText primary={item.text} primaryTypographyProps={{ textAlign: 'left', ...fontBecker }} />
+                        <ListItemButton
+                            sx={{ textAlign: 'left', ...fontBecker }}
+                            onClick={() => scrollToSection(item.to)}
+                        >
+                            <ListItemText
+                                primary={item.text}
+                                primaryTypographyProps={{
+                                    textAlign: 'left',
+                                    ...fontBecker,
+                                }}
+                            />
                         </ListItemButton>
                     </ListItem>
                 ))}
@@ -159,38 +166,63 @@ export default function DrawerAppBar(props: Props) {
         </Box>
     );
 
-    const container = window !== undefined ? () => window().document.body : undefined;
+    const container =
+        window !== undefined ? () => window().document.body : undefined;
 
     return (
         <Box sx={{ display: 'flex' }}>
-            <AppBar
-                position="static"
-                elevation={0}
-                sx={{ ...navBarStyles }}
-            >
-                <Toolbar sx={{ flexWrap: 'wrap', justifyContent: 'space-between', width: '100%' }}>
+            <AppBar position="static" elevation={0} sx={{ ...navBarStyles }}>
+                <Toolbar
+                    sx={{
+                        flexWrap: 'wrap',
+                        justifyContent: 'space-between',
+                        width: '100%',
+                    }}
+                >
                     <IconButton
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' }, color: 'primary.main' }}
+                        sx={{
+                            mr: 2,
+                            display: { sm: 'none' },
+                            color: 'primary.main',
+                        }}
                     >
                         <MenuIcon style={{ color: 'primary.dark' }} />
                     </IconButton>
-                    <Box component={'nav'} sx={{ ...barItem, ...fontBecker }} display={{ xs: 'none', sm: 'flex' }}>
-                        {navItems.map(item => (<ItemNav text={item.text} to={item.to} key={item.text} />))}
+                    <Box
+                        component={'nav'}
+                        sx={{ ...barItem, ...fontBecker }}
+                        display={{ xs: 'none', sm: 'flex' }}
+                    >
+                        {navItems.map((item) => (
+                            <ItemNav
+                                text={item.text}
+                                to={item.to}
+                                key={item.text}
+                            />
+                        ))}
                     </Box>
-                    <Box component={'nav'} sx={{ ...barItem, ...fontBecker }} display={'flex'}>
-                        <ItemLocale text={'EN'} href={"en"} />
-                        <ItemLocale text={'ES'} href={"es"} />
-                        <Box sx={buttonTickets} style={{ display: hideElement ? 'none' : 'block' }}>
+                    <Box
+                        component={'nav'}
+                        sx={{ ...barItem, ...fontBecker }}
+                        display={'flex'}
+                    >
+                        <ItemLocale text={'EN'} href={'en'} />
+                        <ItemLocale text={'ES'} href={'es'} />
+                        <Box
+                            sx={buttonTickets}
+                            style={{ display: hideElement ? 'none' : 'block' }}
+                        >
                             <LinkUI
                                 href="https://welook.io/t/ethereum-argentina"
                                 rel="noopener"
                                 target="_blank"
                                 color={'common.white'}
                                 style={{ cursor: 'pointer' }}
-                                underline="hover">
+                                underline="hover"
+                            >
                                 {t('buttonTicketText')}
                             </LinkUI>
                         </Box>
@@ -213,7 +245,7 @@ export default function DrawerAppBar(props: Props) {
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
                             width: drawerWidth,
-                            backgroundColor: "#4FAEE3"
+                            backgroundColor: '#4FAEE3',
                         },
                     }}
                 >

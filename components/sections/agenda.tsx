@@ -1,15 +1,14 @@
 'use client';
 
 import { Box, CardMedia, Container, Grid, Typography } from '@mui/material';
-import agenda1 from '../../public/assets/agenda/agenda-1.svg'
-import agenda2 from '../../public/assets/agenda/agenda-2.svg'
-import agenda3 from '../../public/assets/agenda/agenda-3.svg'
-import agenda4 from '../../public/assets/agenda/agenda-4.svg'
-import agenda5 from '../../public/assets/agenda/agenda-5.svg'
+import agenda1 from '../../public/assets/agenda/agenda-1.svg';
+import agenda2 from '../../public/assets/agenda/agenda-2.svg';
+import agenda3 from '../../public/assets/agenda/agenda-3.svg';
+import agenda4 from '../../public/assets/agenda/agenda-4.svg';
+import agenda5 from '../../public/assets/agenda/agenda-5.svg';
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import ButtonBecker from '../button-becker';
-
 
 interface Props {
     iconSrc: string;
@@ -20,7 +19,14 @@ interface Props {
     subTitle: string;
 }
 
-const AgendaItem = ({ iconSrc, bgColorDate, date, month, title, subTitle }: Props) => {
+const AgendaItem = ({
+    iconSrc,
+    bgColorDate,
+    date,
+    month,
+    title,
+    subTitle,
+}: Props) => {
     return (
         <Grid container xs={12} alignItems={'center'}>
             <Grid container xs={12} sm={3} direction={'row'}>
@@ -32,31 +38,60 @@ const AgendaItem = ({ iconSrc, bgColorDate, date, month, title, subTitle }: Prop
                         alt={'Agenda'}
                     />
                 </Box>
-                <Box alignItems={'center'} justifyContent={'center'} sx={{ display: 'flex', backgroundColor: bgColorDate, width: { xs: '100%', sm: 100 } }} width={100} height={100}>
+                <Box
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                    sx={{
+                        display: 'flex',
+                        backgroundColor: bgColorDate,
+                        width: { xs: '100%', sm: 100 },
+                    }}
+                    width={100}
+                    height={100}
+                >
                     <Box>
-                        <Typography variant="h2" align='center' fontSize={'2em'} fontFamily={'becker-wood-type'} color={"primary.main"}>
+                        <Typography
+                            variant="h2"
+                            align="center"
+                            fontSize={'2em'}
+                            fontFamily={'becker-wood-type'}
+                            color={'primary.main'}
+                        >
                             {date}
                         </Typography>
-                        <Typography variant="h2" align='center' fontSize={'2em'} fontFamily={'becker-wood-type'} color={"primary.main"}>
+                        <Typography
+                            variant="h2"
+                            align="center"
+                            fontSize={'2em'}
+                            fontFamily={'becker-wood-type'}
+                            color={'primary.main'}
+                        >
                             {month}
                         </Typography>
                     </Box>
                 </Box>
             </Grid>
-            <Grid item xs={12} sm={9} >
-                <Box display={'flex'} flexDirection={'column'} sx={{ textAlign: { xs: 'center', sm: 'left' }, my: { xs: 3, sm: 0 } }}>
+            <Grid item xs={12} sm={9}>
+                <Box
+                    display={'flex'}
+                    flexDirection={'column'}
+                    sx={{
+                        textAlign: { xs: 'center', sm: 'left' },
+                        my: { xs: 3, sm: 0 },
+                    }}
+                >
                     <Typography
                         variant="h3"
                         fontSize={'1.3em'}
                         fontFamily={'futura-md-bt'}
-                        color={"common.white"}
+                        color={'common.white'}
                         dangerouslySetInnerHTML={{ __html: title }}
                     />
                     <Typography
                         variant="h4"
                         fontSize={'1em'}
                         fontFamily={'futurist-fixed-width'}
-                        color={"#C1E9EF"}
+                        color={'#C1E9EF'}
                     >
                         {subTitle}
                     </Typography>
@@ -64,30 +99,39 @@ const AgendaItem = ({ iconSrc, bgColorDate, date, month, title, subTitle }: Prop
             </Grid>
         </Grid>
     );
-}
-
+};
 
 function AgendaSection() {
     const { t } = useTranslation('home');
     return (
         <Box
             component="section"
-            sx={{ display: 'flex', overflow: 'hidden', backgroundColor: 'primary.dark', }}
-            id='agenda'
+            sx={{
+                display: 'flex',
+                overflow: 'hidden',
+                backgroundColor: 'primary.dark',
+            }}
+            id="agenda"
         >
-            <Container >
-                <Grid container >
+            <Container>
+                <Grid container>
                     <Grid item xs={12}>
-                        <Typography align={'center'} textAlign={'center'} variant="h2" sx={{ my: 2 }} fontFamily={'becker-wood-type'} color={"common.white"}>
+                        <Typography
+                            align={'center'}
+                            textAlign={'center'}
+                            variant="h2"
+                            sx={{ my: 2 }}
+                            fontFamily={'becker-wood-type'}
+                            color={'common.white'}
+                        >
                             Agenda
                         </Typography>
                     </Grid>
                 </Grid>
                 <Grid container my={8}>
-
                     <AgendaItem
                         iconSrc={agenda1.src}
-                        bgColorDate='#4FADE1'
+                        bgColorDate="#4FADE1"
                         date={t('agendaDate1')}
                         month={t('agendaMonth1')}
                         title={t('agendaTitle1')}
@@ -96,7 +140,7 @@ function AgendaSection() {
 
                     <AgendaItem
                         iconSrc={agenda2.src}
-                        bgColorDate='#A7D9EA'
+                        bgColorDate="#A7D9EA"
                         date={t('agendaDate2')}
                         month={t('agendaMonth2')}
                         title={t('agendaTitle2')}
@@ -105,7 +149,7 @@ function AgendaSection() {
 
                     <AgendaItem
                         iconSrc={agenda3.src}
-                        bgColorDate='#F9B300'
+                        bgColorDate="#F9B300"
                         date={t('agendaDate3')}
                         month={t('agendaMonth3')}
                         title={t('agendaTitle3')}
@@ -114,7 +158,7 @@ function AgendaSection() {
 
                     <AgendaItem
                         iconSrc={agenda4.src}
-                        bgColorDate='#4FADE1'
+                        bgColorDate="#4FADE1"
                         date={t('agendaDate4')}
                         month={t('agendaMonth4')}
                         title={t('agendaTitle4')}
@@ -123,16 +167,20 @@ function AgendaSection() {
 
                     <AgendaItem
                         iconSrc={agenda5.src}
-                        bgColorDate='#F9B300'
+                        bgColorDate="#F9B300"
                         date={t('agendaDate5')}
                         month={t('agendaMonth5')}
                         title={t('agendaTitle5')}
                         subTitle={t('agendaSubTitle5')}
                     />
-
                 </Grid>
                 <Grid container justifyContent={'center'} direction={'column'}>
-                    <Typography fontFamily='futura-book-bt' align='center' fontSize='1.3rem' color={'common.white'}>
+                    <Typography
+                        fontFamily="futura-book-bt"
+                        align="center"
+                        fontSize="1.3rem"
+                        color={'common.white'}
+                    >
                         {t('agendaDownloadText')}
                     </Typography>
                     <Box justifyContent={'center'} display={'flex'}>
@@ -145,7 +193,7 @@ function AgendaSection() {
                 </Grid>
             </Container>
         </Box>
-    )
+    );
 }
 
 export default AgendaSection;
